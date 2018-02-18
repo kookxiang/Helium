@@ -178,10 +178,10 @@
                                         <menuItem title="Preferences..." id="MMM-uX-MFR">
                                             <menu key="submenu" title="Preferences..." id="BdD-B4-azf">
                                                 <items>
-                                                    <menuItem title="Auto-hide Title Bar" id="bwA-Ka-6Ou">
+                                                    <menuItem title="Hide Title Bar" id="bwA-Ka-6Ou">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="autoHideTitlePress:" target="Ady-hI-5gd" id="m4H-Fo-eBP"/>
+                                                            <action selector="hideTitlePress:" target="Ady-hI-5gd" id="m4H-Fo-eBP"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Create New Windows" id="XlG-m9-GkO">
@@ -349,9 +349,9 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Appearance" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Auto-hide Title Bar" keyEquivalent="b" id="fpG-6V-xxb">
+                                        <menuItem title="Hide Title Bar" keyEquivalent="b" id="fpG-6V-xxb">
                                             <connections>
-                                                <action selector="autoHideTitlePress:" target="Ady-hI-5gd" id="O7c-yh-tbI"/>
+                                                <action selector="hideTitlePress:" target="Ady-hI-5gd" id="O7c-yh-tbI"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Translucency" id="RVf-yr-XjB" userLabel="Translucency">
@@ -587,10 +587,10 @@ CA
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <menu key="submenu" title="Preferences" id="t9b-07-eWX">
                                 <items>
-                                    <menuItem title="Auto-hide Title Bar" id="Tpr-Be-Saa">
+                                    <menuItem title="Hide Title Bar" id="Tpr-Be-Saa">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                         <connections>
-                                            <action selector="autoHideTitlePress:" target="Ady-hI-5gd" id="TWO-Et-uNB"/>
+                                            <action selector="hideTitlePress:" target="Ady-hI-5gd" id="TWO-Et-uNB"/>
                                         </connections>
                                     </menuItem>
                                     <menuItem title="Create New Windows" id="YHy-bp-M43">
