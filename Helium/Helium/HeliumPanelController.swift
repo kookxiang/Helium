@@ -56,7 +56,7 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
     func documentViewDidLoad() {
         // Moved later, called by view, when document is available
         setFloatOverFullScreenApps()
-        
+
         updateTitleBar(didChange:false)
         
         willUpdateTranslucency()
@@ -119,7 +119,7 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
         let lastMouseOver = mouseOver
         mouseOver = true
         updateTranslucency()
-        if doc?.settings.autoHideTitle.value == true && lastMouseOver != mouseOver {
+        if doc?.settings.hideTitle.value == true && lastMouseOver != mouseOver {
             updateTitleBar(didChange: true)
         }
     }
@@ -128,7 +128,7 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
         let lastMouseOver = mouseOver
         mouseOver = false
         updateTranslucency()
-        if doc?.settings.autoHideTitle.value == true && lastMouseOver != mouseOver {
+        if doc?.settings.hideTitle.value == true && lastMouseOver != mouseOver {
             updateTitleBar(didChange: true)
         }
     }
@@ -204,9 +204,9 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
             return doc!.settings
         }
     }
-    @IBAction func autoHideTitlePress(_ sender: NSMenuItem) {
-        settings.autoHideTitle.value = (sender.state == NSOffState)
-        updateTitleBar(didChange: !mouseOver)
+    @IBAction func hideTitlePress(_ sender: NSMenuItem) {
+        settings.hideTitle.value = (sender.state == NSOffState)
+        updateTitleBar(didChange: true)
     }
     @IBAction func floatOverFullScreenAppsPress(_ sender: NSMenuItem) {
         settings.disabledFullScreenFloat.value = (sender.state == NSOnState)
@@ -236,7 +236,7 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
         case "Preferences":
             break
         case "Auto-hide Title Bar":
-            menuItem.state = settings.autoHideTitle.value ? NSOnState : NSOffState
+            menuItem.state = settings.hideTitle.value ? NSOnState : NSOffState
             break
         //Transluceny Menu
         case "Never":
@@ -324,7 +324,7 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
         let docIconButton = panel.standardWindowButton(.documentIconButton)
 
         if didChange {
-            if settings.autoHideTitle.value == true && !mouseOver {
+            if settings.hideTitle.value == true {
                 panel.titleVisibility = NSWindowTitleVisibility.hidden
                 panel.titlebarAppearsTransparent = true
                 self.window!.styleMask.formUnion(.fullSizeContentView)
@@ -335,7 +335,7 @@ class HeliumPanelController : NSWindowController,NSWindowDelegate {
                 self.window!.styleMask.formSymmetricDifference(.fullSizeContentView)
             }
         }
-        if settings.autoHideTitle.value == false || mouseOver {
+        if settings.hideTitle.value == false {
             if let doc = self.document {
                 docIconButton?.image = (doc as! Document).displayImage
             }

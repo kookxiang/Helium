@@ -211,7 +211,7 @@ internal struct Settings {
         }
     }
     
-    let autoHideTitle = Setup<Bool>("autoHideTitle", value: false)
+    let hideTitle = Setup<Bool>("hideTitle", value: false)
     let disabledFullScreenFloat = Setup<Bool>("disabledFullScreenFloat", value: false)
     let opacityPercentage = Setup<Int>("opacityPercentage", value: 60)
     let windowURL = Setup<URL>("windowURL", value: URL.init(string: "http://")!)
@@ -251,7 +251,7 @@ class Document : NSDocument {
         dict[k.time] = settings.time.value
         dict[k.rank] = settings.rank.value
         dict[k.rect] = NSStringFromRect(settings.rect.value)
-        dict[k.label] = settings.autoHideTitle.value
+        dict[k.label] = settings.hideTitle.value
         dict[k.hover] = settings.disabledFullScreenFloat.value
         dict[k.alpha] = settings.opacityPercentage.value
         dict[k.trans] = settings.translucencyPreference.value.rawValue as AnyObject
@@ -265,7 +265,7 @@ class Document : NSDocument {
         item.time = self.settings.time.value
         item.rank = self.settings.rank.value
         item.rect = self.settings.rect.value
-        item.label = self.settings.autoHideTitle.value
+        item.label = self.settings.hideTitle.value
         item.hover = self.settings.disabledFullScreenFloat.value
         item.alpha = Float(self.settings.opacityPercentage.value)
         item.trans = self.settings.translucencyPreference.value.rawValue
@@ -280,7 +280,7 @@ class Document : NSDocument {
         self.settings.time.value = (plist[k.time] as AnyObject).timeInterval ?? 0.0
         self.settings.rank.value = (plist[k.rank] as AnyObject).intValue ?? 0
         self.settings.rect.value = (plist[k.rect] as AnyObject).rectValue ?? NSZeroRect
-        self.settings.autoHideTitle.value = (plist[k.label] as AnyObject).boolValue ?? false
+        self.settings.hideTitle.value = (plist[k.label] as AnyObject).boolValue ?? false
         self.settings.disabledFullScreenFloat.value = (plist[k.hover] as AnyObject).boolValue ?? false
         self.settings.opacityPercentage.value = (plist[k.alpha] as AnyObject).intValue ?? 60
         self.settings.translucencyPreference.value = HeliumPanelController.TranslucencyPreference(rawValue: (plist[k.trans] as AnyObject).intValue ?? 0)!

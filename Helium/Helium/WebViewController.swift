@@ -21,7 +21,9 @@ class MyWebView : WKWebView {
     }
 
     override var mouseDownCanMoveWindow: Bool {
-        return true
+        let hwc = self.window?.windowController as! HeliumPanelController
+        let doc = hwc.document as! Document
+        return doc.settings.hideTitle.value
     }
     
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
@@ -182,8 +184,8 @@ class MyWebView : WKWebView {
         let subPref = NSMenu()
         item.submenu = subPref
 
-        item = NSMenuItem(title: "Auto-hide Title Bar", action: #selector(hwc.autoHideTitlePress(_:)), keyEquivalent: "")
-        item.state = doc.settings.autoHideTitle.value ? NSOnState : NSOffState
+        item = NSMenuItem(title: "Hide Title Bar", action: #selector(hwc.hideTitlePress(_:)), keyEquivalent: "")
+        item.state = doc.settings.hideTitle.value ? NSOnState : NSOffState
         item.target = hwc
         subPref.addItem(item)
 
@@ -675,7 +677,7 @@ class WebViewController: NSViewController, WKNavigationDelegate {
                 webView.window?.setContentSize(webSize)
                 webView.bounds.size = webSize
                 self.view.window?.setFrameOrigin(rect.origin)
-                doc.settings.autoHideTitle.value = playitem.label
+                doc.settings.hideTitle.value = playitem.label
                 hwc.updateTitleBar(didChange: false)
                 doc.settings.opacityPercentage.value = Int(playitem.alpha)
                 hwc.willUpdateAlpha()
